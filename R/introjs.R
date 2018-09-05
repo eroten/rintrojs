@@ -90,12 +90,15 @@ introjs <- function(session,
 #' \dontrun{
 #' introjs(session, events = list(onbeforechange = readCallback("switchTabs")))
 #' }
-readCallback <- function(funname = c("switchTabs")) {
-  funname <- match.arg(funname)
+readCallback <- function(funname = c(), func = NULL) {
+  #funname <- match.arg(funname)
   
+  if(funname == "switchTabs"){
   switch(funname,
          switchTabs = I("rintrojs.callback.switchTabs(targetElement)"))
-  
+  } else{
+    onComplete = I("rintrojs.callback.onComplete(function(func))")
+  }
 }
 
 #' @rdname introjs
